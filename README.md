@@ -61,7 +61,7 @@ println!("{:?}", squares); // Output: [1, 4, 9, 16]
 The `and_then` combinator is used with `Option` and `Result` types to chain operations that may return `Option` or `Result`. It's particularly useful for sequential operations where each step may fail or produce an optional value.
 
 ```rust
-fn sqrt(x: f64) -Option {  
+fn sqrt(x: f64) -> Option {  
     if x >= 0.0 { Some(x.sqrt()) } else { None }  
 }  
   
