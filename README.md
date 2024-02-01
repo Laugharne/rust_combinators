@@ -51,9 +51,9 @@ Let’s start with some basic combinators that are frequently used in Rust progr
 
 The `map` combinator applies a function to each element of an iterator, transforming them into a new form. It's widely used for data transformation tasks.
 ```rust
-let nums = vec!\[1, 2, 3, 4\];  
-let squares: Vec = nums.iter().map(|&x| x \* x).collect();  
-println!("{:?}", squares); // Output: \[1, 4, 9, 16\]
+let nums = vec![1, 2, 3, 4];  
+let squares: Vec = nums.iter().map(|&x| x * x).collect();  
+println!("{:?}", squares); // Output: [1, 4, 9, 16]
 ```
 
 ## `and_then`
@@ -74,11 +74,11 @@ println!("{:?}", result); // Output: Some(2.0)
 The `filter` combinator is used to selectively include elements from an iterator based on a predicate function.
 
 ```rust
-let nums = vec!\[1, 2, 3, 4, 5\];  
+let nums = vec![1, 2, 3, 4, 5];  
   
 let even_nums: Vec = nums.into_iter().filter(|x| x % 2 == 0).collect();  
   
-println!("{:?}", even_nums); // Output: \[2, 4\]
+println!("{:?}", even_nums); // Output: [2, 4]
 ```
 
 # Advanced Combinators and Their Usage
@@ -90,7 +90,7 @@ As we delve deeper into Rust’s functional features, we encounter more sophisti
 The `fold` combinator aggregates elements of an iterator by applying a binary operation, starting from an initial value.
 
 ```rust
-let nums = vec!\[1, 2, 3, 4\];  
+let nums = vec![1, 2, 3, 4];  
   
 let sum = nums.iter().fold(0, |acc, &x| acc + x);  
   
@@ -102,13 +102,13 @@ println!("{}", sum); // Output: 10
 The `zip` combinator pairs up elements from two iterators into a single iterator of tuples. It's useful for iterating over two sequences in parallel.
 
 ```rust
-let nums1 = vec!\[1, 2, 3\];  
+let nums1 = vec![1, 2, 3];  
   
-let nums2 = vec!\[4, 5, 6\];  
+let nums2 = vec![4, 5, 6];  
   
 let zipped: Vec<_= nums1.iter().zip(nums2.iter()).collect();  
   
-println!("{:?}", zipped); // Output: \[(1, 4), (2, 5), (3, 6)\]
+println!("{:?}", zipped); // Output: [(1, 4), (2, 5), (3, 6)]
 ```
 
 # Combinators with Closures
@@ -118,11 +118,11 @@ Closures in Rust are anonymous functions that can capture their environment. Com
 ```rust
 let threshold = 2;  
   
-let nums = vec!\[1, 2, 3, 4\];  
+let nums = vec![1, 2, 3, 4];  
   
 let filtered: Vec = nums.into_iter().filter(|&x| x threshold).collect();  
   
-println!("{:?}", filtered); // Output: \[3, 4\]
+println!("{:?}", filtered); // Output: [3, 4]
 ```
 
 # Practical Applications
@@ -239,7 +239,7 @@ One of the key features of combinators is their ability to chain operations. Rus
 Chaining allows for the composition of multiple operations in a concise and readable manner. For example, using `Option`'s `map` and `and_then` methods:
 
 ```rust
-fn square(x: i32) -i32 { x \* x }  
+fn square(x: i32) -i32 { x * x }  
   
 fn to_str(x: i32) -Option { Some(x.to_string()) }  
   
@@ -294,18 +294,18 @@ In this implementation:
 To verify that `maybe_apply` works as intended, write some tests. Add the following code to the bottom of your `lib.rs` or `main.rs`:
 
 ```rust
-#\[cfg(test)\]  
+#[cfg(test)]  
 mod tests {  
-    use super::\*;  
+    use super::*;  
   
-#\[test\]  
+#[test]  
     fn test_maybe_apply_some() {  
-        let result = maybe_apply(Some(5), |x| x \* 2);  
+        let result = maybe_apply(Some(5), |x| x * 2);  
         assert_eq!(result, Some(10));  
     }  
-    #\[test\]  
+    #[test]  
     fn test_maybe_apply_none() {  
-        let result: Option = maybe_apply(None, |x: i32| x \* 2);  
+        let result: Option = maybe_apply(None, |x: i32| x * 2);  
         assert_eq!(result, None);  
     }  
 }
@@ -328,7 +328,7 @@ With `maybe_apply` tested and ready, you can now use it in your Rust application
 ```rust
 fn main() {  
     let value = Some(10);  
-    let doubled = maybe_apply(value, |x| x \* 2);  
+    let doubled = maybe_apply(value, |x| x * 2);  
     println!("Doubled: {:?}", doubled); // Should print "Doubled: Some(20)"  
 }
 ```
