@@ -120,7 +120,7 @@ let threshold = 2;
   
 let nums = vec![1, 2, 3, 4];  
   
-let filtered: Vec = nums.into_iter().filter(|&x| x threshold).collect();  
+let filtered: Vec = nums.into_iter().filter(|&x| x > threshold).collect();  
   
 println!("{:?}", filtered); // Output: [3, 4]
 ```
@@ -151,7 +151,7 @@ Rust’s `Result` type is a powerful tool for [error handling](https://medium.co
 The `map_err` combinator is used to transform the error part of a `Result`. It's particularly useful when you need to convert errors from one type to another.
 
 ```rust
-fn parse_number(num_str: &str) -Result {  
+fn parse_number(num_str: &str) -> Result {  
     num_str.parse::().map_err(|e| e.to_string())  
 }  
   
@@ -166,7 +166,7 @@ println!("{:?}", result); // Output: Err("invalid digit found in string")
 The `or_else` combinator provides a way to handle errors and possibly recover from them, allowing for fallback operations or error transformations.
 
 ```rust
-fn try_parse_or_zero(num_str: &str) -Result {  
+fn try_parse_or_zero(num_str: &str) -> Result {  
     num_str.parse::().or_else(|_| Ok(0))  
 }  
   
@@ -188,7 +188,7 @@ Rust’s asynchronous programming model, based on futures and async/await, heavi
 The `and_then` combinator can be used with futures to perform sequential asynchronous operations, where the output of one operation is the input to the next.
 
 ```rust
-async fn fetch_url(url: &str) -Result {  
+async fn fetch_url(url: &str) -> Result {  
     reqwest::get(url).await?.text().await  
 }  
   
@@ -239,9 +239,9 @@ One of the key features of combinators is their ability to chain operations. Rus
 Chaining allows for the composition of multiple operations in a concise and readable manner. For example, using `Option`'s `map` and `and_then` methods:
 
 ```rust
-fn square(x: i32) -i32 { x * x }  
+fn square(x: i32) ->i32 { x * x }  
   
-fn to_str(x: i32) -Option { Some(x.to_string()) }  
+fn to_str(x: i32) ->Option { Some(x.to_string()) }  
   
 let result: Option = Some(2).map(square).and_then(to_str);
 ```
@@ -272,9 +272,9 @@ Now, open the `src/lib.rs` file (or `src/main.rs` if you prefer an executable) a
 ## Step 4: Implementing `maybe_apply`
 
 ```rust
-fn maybe_apply(option: Option, f: F) -Option  
+fn maybe_apply(option: Option, f: F) -> Option  
 where  
-    F: FnOnce(T) -U,  
+    F: FnOnce(T) -> U,  
 {  
     match option {  
         Some(value) =Some(f(value)),  
